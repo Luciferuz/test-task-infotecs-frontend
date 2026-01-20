@@ -6,6 +6,7 @@ import ruRU from 'antd/locale/ru_RU';
 import {LoginPage} from '../pages/login/login.component';
 import {ProtectedRoute} from './providers/protected-route.component';
 import {NotFoundPage} from "../pages/not-found/not-found.component";
+import {UsersPage} from "../pages/users/users.component";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -40,7 +41,7 @@ export const App: FC = () => {
                                 path="/users"
                                 element={
                                     <ProtectedRoute>
-                                        TODO users list
+                                        <UsersPage/>
                                     </ProtectedRoute>
                                 }
                             />
