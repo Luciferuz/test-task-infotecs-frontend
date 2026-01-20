@@ -1,10 +1,11 @@
-import React, {ReactNode} from 'react';
+import React, {FC, ReactNode} from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ConfigProvider} from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import {LoginComponent} from '../pages/login/login.component';
+import {LoginPage} from '../pages/login/login.component';
 import {ProtectedRoute} from './providers/protected-route.component';
+import {NotFoundPage} from "../pages/not-found/not-found.component";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -15,12 +16,12 @@ const queryClient = new QueryClient({
     },
 });
 
-const AuthChecker: React.FC<{ children: ReactNode }> = ({children}) => {
+const AuthChecker: FC<{ children: ReactNode }> = ({children}) => {
     const _token = localStorage.getItem('token'); // TODO: получаем токен, проверяем права пользователя...
     return <>{children}</>;
 };
 
-export const App: React.FC = () => {
+export const App: FC = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <ConfigProvider locale={ruRU}>
@@ -32,7 +33,7 @@ export const App: React.FC = () => {
                                 element={
                                     localStorage.getItem('token') ?
                                         <Navigate to="/users" replace/> :
-                                        <LoginComponent/>
+                                        <LoginPage/>
                                 }
                             />
                             <Route
@@ -43,7 +44,7 @@ export const App: React.FC = () => {
                                     </ProtectedRoute>
                                 }
                             />
-                            <Route path="/404" element={<>TODO NOT FOUND</>}/>
+                            <Route path="/404" element={<NotFoundPage/>}/>
                             <Route path="/" element={<Navigate to="/users" replace/>}/>
                             <Route path="*" element={<Navigate to="/404" replace/>}/>
                         </Routes>
