@@ -7,6 +7,8 @@ import {User} from '../../entities/user/types/user';
 import {StyledHeader, UserCard} from "./users.styles";
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import {EditUserModal} from "../../features/ui/modals/edit-user.component";
+import {CreateUserModal} from "../../features/ui/modals/create-user.component";
 
 const {Title, Text} = Typography;
 const {Content} = Layout;
@@ -76,6 +78,19 @@ export const UsersPage: FC = () => {
                     ))}
                 </Row>
             </Content>
+
+            <CreateUserModal
+                open={isCreateModalOpen}
+                onClose={() => setIsCreateModalOpen(false)}
+            />
+
+            {selectedUser && (
+                <EditUserModal
+                    user={selectedUser}
+                    open={!!selectedUser}
+                    onClose={() => setSelectedUser(null)}
+                />
+            )}
         </Layout>
     );
 };
