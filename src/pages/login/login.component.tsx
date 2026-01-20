@@ -7,7 +7,7 @@ import {LoginContainer, StyledCard} from './login.styles';
 
 const {Title} = Typography;
 
-export const LoginComponent: FC = () => {
+export const LoginPage: FC = () => {
     const {login, isLoading, isAuthenticated} = useAuth();
     const navigate = useNavigate();
     const [form] = Form.useForm();
