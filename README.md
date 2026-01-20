@@ -31,4 +31,5 @@
 ![img_7.png](img_7.png)
 
 
-
+####  GitFlow
+<img width="1222" height="436" alt="image" src="https://github.com/user-attachments/assets/dd1446a9-0725-48b0-aec6-de87ddaac776" />
